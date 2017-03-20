@@ -1,8 +1,7 @@
-package mobsoft.hulcsa.com.festivalapp.ui.main;
+package mobsoft.hulcsa.com.festivalapp.ui.events;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -10,18 +9,19 @@ import javax.inject.Inject;
 
 import mobsoft.hulcsa.com.festivalapp.FestivalAppApplication;
 import mobsoft.hulcsa.com.festivalapp.R;
+import mobsoft.hulcsa.com.festivalapp.model.Event;
 import mobsoft.hulcsa.com.festivalapp.model.NetworkError;
-import mobsoft.hulcsa.com.festivalapp.model.Stage;
+import mobsoft.hulcsa.com.festivalapp.ui.main.MainPresenter;
 
-public class MainActivity extends AppCompatActivity implements MainScreen {
+public class EventsActivity extends AppCompatActivity implements EventsScreen {
 
     @Inject
-    MainPresenter mainPresenter;
+    EventsPresenter eventsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_events);
 
         FestivalAppApplication.injector.inject(this);
     }
@@ -29,17 +29,17 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Override
     protected void onStart() {
         super.onStart();
-        mainPresenter.attachScreen(this);
+        eventsPresenter.attachScreen(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mainPresenter.detachScreen();
+        eventsPresenter.detachScreen();
     }
 
     @Override
-    public void showStages(List<Stage> stages) {
+    public void showEvents(List<Event> events) {
 
     }
 
