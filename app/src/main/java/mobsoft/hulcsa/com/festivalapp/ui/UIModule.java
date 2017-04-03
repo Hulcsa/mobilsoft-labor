@@ -31,6 +31,12 @@ public class UIModule {
 
     @Provides
     @Singleton
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
+    }
+
+    @Provides
+    @Singleton
     public MainPresenter provideMainPresenter() {
         return new MainPresenter();
     }
@@ -51,11 +57,5 @@ public class UIModule {
     @Singleton
     public EventDetailsPresenter provideEventDetailsPresenter() {
         return new EventDetailsPresenter();
-    }
-
-    @Provides
-    @Singleton
-    public EventBus provideEventBus() {
-        return EventBus.getDefault();
     }
 }

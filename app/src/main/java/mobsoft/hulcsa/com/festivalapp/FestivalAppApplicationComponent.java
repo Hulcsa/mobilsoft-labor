@@ -3,9 +3,11 @@ package mobsoft.hulcsa.com.festivalapp;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import mobsoft.hulcsa.com.festivalapp.interactor.InteractorModule;
 import mobsoft.hulcsa.com.festivalapp.interactor.event.EventInteractor;
 import mobsoft.hulcsa.com.festivalapp.interactor.favourites.FavouritesInteractor;
 import mobsoft.hulcsa.com.festivalapp.interactor.stage.StageInteractor;
+import mobsoft.hulcsa.com.festivalapp.repository.RepositoryModule;
 import mobsoft.hulcsa.com.festivalapp.ui.UIModule;
 import mobsoft.hulcsa.com.festivalapp.ui.eventdetails.EventDetailsActivity;
 import mobsoft.hulcsa.com.festivalapp.ui.eventdetails.EventDetailsPresenter;
@@ -17,7 +19,10 @@ import mobsoft.hulcsa.com.festivalapp.ui.main.MainActivity;
 import mobsoft.hulcsa.com.festivalapp.ui.main.MainPresenter;
 
 @Singleton
-@Component(modules = {UIModule.class})
+@Component(modules = {
+        UIModule.class,
+        InteractorModule.class,
+        RepositoryModule.class})
 public interface FestivalAppApplicationComponent {
     void inject(MainActivity mainActivity);
     void inject(EventsActivity eventsActivity);
