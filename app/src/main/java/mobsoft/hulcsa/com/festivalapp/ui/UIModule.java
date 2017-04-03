@@ -6,6 +6,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import mobsoft.hulcsa.com.festivalapp.ui.eventdetails.EventDetailsPresenter;
+import mobsoft.hulcsa.com.festivalapp.ui.events.EventsPresenter;
+import mobsoft.hulcsa.com.festivalapp.ui.favourites.FavouritesPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.main.MainPresenter;
 
 /**
@@ -31,4 +34,21 @@ public class UIModule {
         return new MainPresenter();
     }
 
+    @Provides
+    @Singleton
+    public FavouritesPresenter provideFavouritesPresenter() {
+        return new FavouritesPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public EventsPresenter provideEventsPresenter() {
+        return new EventsPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public EventDetailsPresenter provideEventDetailsPresenter() {
+        return new EventDetailsPresenter();
+    }
 }
