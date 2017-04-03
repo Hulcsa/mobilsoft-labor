@@ -1,12 +1,10 @@
-# this is an example of the Uber API
-# as a demonstration of an API spec in YAML
 swagger: '2.0'
 info:
   title: Festival App API
   description: Mobilsoftware laboratory HA
   version: "1.0.0"
 # the domain of the service
-host: api.uber.com
+host: api.festivalapp.com
 # array of all schemes that your API supports
 schemes:
   - http
@@ -34,13 +32,54 @@ paths:
           schema:
             $ref: '#/definitions/Error'
             
+  /stages/{id}:
+    get:
+      summary: Stage
+      description: |
+        The Stage endpoint returns with an Stage with the given id.
+      tags:
+        - Stage
+      parameters:
+        - name: id
+          in: path
+          description: The id of a stage
+          required: true
+          type: string
+      responses:
+        200:
+          description: A Stage
+          schema:
+              $ref: '#/definitions/Stage'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
   /stages/{id}/events:
     get:
       summary: Events
       description: |
-        The Stages endpoint returns with an array of Event associated with the Stage of the given id.
+        The Events endpoint returns with an array of Event associated with the Stage of the given id.
       tags:
-        - Stage
+        - Event
+      parameters:
+        - name: id
+          in: path
+          description: The id of a stage
+          required: true
+          type: string
+        - name: skip
+          in: query
+          description: Event count to skip
+          required: true
+          type: integer
+          format: int32
+        - name: limit
+          in: query
+          description: Max event count for request
+          required: true
+          type: string
+          format: int32
       responses:
         200:
           description: An array of event
@@ -51,44 +90,85 @@ paths:
         default:
           description: Unexpected error
           schema:
-            $ref: '#/definitions/Error'   
-
+            $ref: '#/definitions/Error'
+  /events/{id}:
+    get:
+      summary: Event
+      description: |
+        The Event endpoint returns with an Event with the given id.
+      tags:
+        - Event
+      parameters:
+        - name: id
+          in: path
+          description: The id of a event
+          required: true
+          type: string
+      responses:
+        200:
+          description: An Event
+          schema:
+            $ref: '#/definitions/Event'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
   Stage:
     type: object
     properties:
-      id:
+      stageId:
         type: string
         description: Unique identifier of a stage.
-      description:
-        type: string
-        description: Description of stage.
       name:
         type: string
         description: Display name of stage.
+      description:
+        type: string
+        description: Description of stage.
       imageUrl:
         type: string
         description: Image URL representing the stage.
   Event:
     type: object
     properties:
-      id:
+      eventId:
         type: string
-        description: Unique identifier of a stage.
+        description: Unique identifier of an event.
+      name:
+        type: string
+        description: Display name of event.
       description:
         type: string
         description: Description of stage.
-      name:
+      genre:
         type: string
-        description: Display name of stage.
+        description: Genre of event.
       imageUrl:
         type: string
         description: Image URL representing the stage.
+      day:
+        type: integer
+        format: int32
+        description: Day of event.
+      startTime:
+        type: integer
+        format: int32
+        description: Start time of event.
+      endTime:
+        type: integer
+        format: int32
+        description: End time of event.
+      stageId:
+        type: string
+        description: Unique identifier of the stage of the event.
   Error:
     type: object
     properties:
       code:
         type: integer
         format: int32
+        description: Error code
       message:
         type: string
+        description: Error message
