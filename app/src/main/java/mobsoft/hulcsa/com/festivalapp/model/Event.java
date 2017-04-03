@@ -8,7 +8,8 @@ import com.orm.dsl.Table;
 
 @Table
 public class Event {
-    private String id;
+    private Long id;
+    private String eventId;
     private String name;
     private String description;
     private String genre;
@@ -21,12 +22,20 @@ public class Event {
 
     public Event() {}
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(String eventId) {
+        this.eventId = eventId;
     }
 
     public String getName() {

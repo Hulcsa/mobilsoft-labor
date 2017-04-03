@@ -5,19 +5,19 @@ package mobsoft.hulcsa.com.festivalapp.model;
  */
 
 public class Stage {
-    private String id;
+    private String stageId;
     private String name;
     private String description;
     private String imageUrl;
 
     public Stage() {}
 
-    public String getId() {
-        return id;
+    public String getStageId() {
+        return stageId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStageId(String stageId) {
+        this.stageId = stageId;
     }
 
     public String getName() {

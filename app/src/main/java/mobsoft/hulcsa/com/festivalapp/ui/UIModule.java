@@ -6,6 +6,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.greenrobot.event.EventBus;
 import mobsoft.hulcsa.com.festivalapp.ui.eventdetails.EventDetailsPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.events.EventsPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.favourites.FavouritesPresenter;
@@ -50,5 +51,11 @@ public class UIModule {
     @Singleton
     public EventDetailsPresenter provideEventDetailsPresenter() {
         return new EventDetailsPresenter();
+    }
+
+    @Provides
+    @Singleton
+    public EventBus provideEventBus() {
+        return EventBus.getDefault();
     }
 }
