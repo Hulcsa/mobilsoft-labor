@@ -1,0 +1,94 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Festival App API
+  description: Mobilsoftware laboratory HA
+  version: "1.0.0"
+# the domain of the service
+host: api.uber.com
+# array of all schemes that your API supports
+schemes:
+  - http
+# will be prefixed to all paths
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /stages:
+    get:
+      summary: Stages
+      description: |
+        The Stages endpoint returns with an array of Stage.
+      tags:
+        - Stage
+      responses:
+        200:
+          description: An array of stage
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Stage'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+            
+  /stages/{id}/events:
+    get:
+      summary: Events
+      description: |
+        The Stages endpoint returns with an array of Event associated with the Stage of the given id.
+      tags:
+        - Stage
+      responses:
+        200:
+          description: An array of event
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'   
+
+definitions:
+  Stage:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier of a stage.
+      description:
+        type: string
+        description: Description of stage.
+      name:
+        type: string
+        description: Display name of stage.
+      imageUrl:
+        type: string
+        description: Image URL representing the stage.
+  Event:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier of a stage.
+      description:
+        type: string
+        description: Description of stage.
+      name:
+        type: string
+        description: Display name of stage.
+      imageUrl:
+        type: string
+        description: Image URL representing the stage.
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
