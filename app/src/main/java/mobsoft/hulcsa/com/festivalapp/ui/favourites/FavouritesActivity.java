@@ -41,4 +41,9 @@ public class FavouritesActivity extends AppCompatActivity implements FavouritesS
     public void showFavourites(List<Event> events) {
 
     }
+
+    @Override
+    public void showDatabaseError() {
+
+    }
 }

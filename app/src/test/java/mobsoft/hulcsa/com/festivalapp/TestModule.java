@@ -1,36 +1,60 @@
-package mobsoft.hulcsa.com.festivalapp.ui;
+package mobsoft.hulcsa.com.festivalapp;
 
 import android.content.Context;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import de.greenrobot.event.EventBus;
+import mobsoft.hulcsa.com.festivalapp.ui.UIModule;
 import mobsoft.hulcsa.com.festivalapp.ui.eventdetails.EventDetailsPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.events.EventsPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.favourites.FavouritesPresenter;
 import mobsoft.hulcsa.com.festivalapp.ui.main.MainPresenter;
+import mobsoft.hulcsa.com.festivalapp.utils.UiExecutor;
 
 /**
- * Created by mobsoft on 2017. 03. 20..
+ * Created by mobsoft on 2017. 05. 08..
  */
 
 @Module
-public class UIModule {
-    private Context context;
+public class TestModule {
 
-    public UIModule(Context context) {
-        this.context = context;
+    private final mobsoft.hulcsa.com.festivalapp.ui.UIModule UIModule;
+
+    public TestModule(Context context) {
+        this.UIModule = new UIModule(context);
     }
 
     @Provides
     public Context provideContext() {
-        return context;
+        return UIModule.provideContext();
     }
+
+
+    @Provides
+    public MainPresenter provideMainPresenter() {
+        return UIModule.provideMainPresenter();
+    }
+
+    @Provides
+    public FavouritesPresenter provideFavouritesPresenter() {
+        return UIModule.provideFavouritesPresenter();
+    }
+
+    @Provides
+    public EventsPresenter provideEventsPresenter() {
+        return UIModule.provideEventsPresenter();
+    }
+
+    @Provides
+    public EventDetailsPresenter provideEventDetailsPresenter() {
+        return UIModule.provideEventDetailsPresenter();
+    }
+
 
     @Provides
     @Singleton
@@ -40,31 +64,7 @@ public class UIModule {
 
     @Provides
     @Singleton
-    public MainPresenter provideMainPresenter() {
-        return new MainPresenter();
-    }
-
-    @Provides
-    @Singleton
-    public FavouritesPresenter provideFavouritesPresenter() {
-        return new FavouritesPresenter();
-    }
-
-    @Provides
-    @Singleton
-    public EventsPresenter provideEventsPresenter() {
-        return new EventsPresenter();
-    }
-
-    @Provides
-    @Singleton
-    public EventDetailsPresenter provideEventDetailsPresenter() {
-        return new EventDetailsPresenter();
-    }
-
-    @Provides
-    @Singleton
-    public Executor provideExecutor() {
-        return Executors.newFixedThreadPool(1);
+    public Executor provideNetworkExecutor() {
+        return new UiExecutor();
     }
 }

@@ -10,4 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="mobsoft.hulcsa.com.festivalapp.ui.main.MainActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>

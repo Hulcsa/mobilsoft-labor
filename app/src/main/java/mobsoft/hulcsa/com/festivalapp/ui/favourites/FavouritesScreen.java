@@ -10,4 +10,5 @@ import mobsoft.hulcsa.com.festivalapp.model.Event;
 
 public interface FavouritesScreen {
     void showFavourites(List<Event> events);
+    void showDatabaseError();
 }
