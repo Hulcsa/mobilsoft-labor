@@ -37,9 +37,6 @@ public class MockInterceptor implements Interceptor {
             return FestivalMock.process(request);
         }
 
-
-
-
         return makeResponse(request, headers, 404, "Unknown");
 
     }
